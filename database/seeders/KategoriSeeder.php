@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Kategori;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Carbon;
 
@@ -19,5 +20,6 @@ class KategoriSeeder extends Seeder
             array('name' => 'sepatu','created_at' => $date,'updated_at' => $date),
             array('name' => 'baju','created_at' => $date,'updated_at' => $date),
         );
+        Kategori::insert($kategori);
     }
 }

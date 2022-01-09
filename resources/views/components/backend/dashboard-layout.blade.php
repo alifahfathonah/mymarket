@@ -3,6 +3,8 @@
     <html lang="en">
     <head>
         <x-backend.header-layout :title="$title"/>
+        <style type="text/css"> .notify{ z-index: 1000000; margin-top: 5%; } </style>
+        @notifyCss
     </head>
     <body class="hold-transition sidebar-mini">
         <!-- START: Site wrapper -->
@@ -25,8 +27,7 @@
         </div>
         <!-- END: ./wrapper -->
     </body>
+    @notifyJs
     </html>
-    <!-- START: Script -->
-    <x-backend.script-layout />
-    <!-- END: Script -->
+
 </div>

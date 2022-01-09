@@ -5,12 +5,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Blank Page</h1>
+                        <h1>Kategori</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Blank Page</li>
+                            <li class="breadcrumb-item active">kategori</li>
                         </ol>
                     </div>
                 </div>
@@ -19,14 +19,28 @@
 
         <!-- Main content -->
         <section class="content">
-
+            <x:notify-messages/>
             <!-- Default box -->
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Title</h3>
+                    <h3 class="card-title">Kategori</h3>
+                    <a href="{{route('admin.addkategori')}}"><button class="btn btn-primary btn-sm float-right">TAMBAH</button></a>
                 </div>
                 <div class="card-body">
-                    Start creating your amazing application!
+                    <table class="table table-bordered table-striped mb-0 display nowrap" id="tabelKategori"
+                           style="width: 100%">
+                        <thead>
+                        <tr>
+                            <th scope="col" class="text-center">#</th>
+                            <th scope="col" class="text-center">NAMA KATEGORI</th>
+                            <th scope="col" class="text-center">DIBUAT</th>
+                            <th scope="col" class="text-center">ACTION</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
@@ -35,8 +49,64 @@
                 <!-- /.card-footer-->
             </div>
             <!-- /.card -->
-
+            <!-- START: MODAL HAPUS -->
+            <div class="modal fade" id="modalHapus" tabindex="-1"  aria-hidden="true">
+                <div class="modal-dialog">
+                    <form action="{{route('admin.deletekategori')}}" method="post">
+                        @csrf
+                        @method('delete')
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">HAPUS</h5>
+                        </div>
+                        <div class="modal-body">
+                                <input type="hidden" id="idhapus" name="id" value="">
+                            Apakah anda ingin menghapus data ini?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-danger">Hapus</button>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+            <!-- END: MODAL HAPUS -->
         </section>
         <!-- /.content -->
     </div>
+    <!-- START: Script -->
+    <x-backend.script-layout />
+    <!-- END: Script -->
+    <script>
+        $('#tabelKategori').DataTable({
+            responsive : true,
+            processing: true,
+            serverSide: true,
+            ajax: "{{ route('admin.kategori') }}",
+            columns: [
+                {
+                    data: 'index',
+                    class: 'text-center',
+                    defaultContent: '',
+                    orderable: false,
+                    searchable: false,
+                    width: '5%',
+                    render: function (data, type, row, meta) {
+                        return meta.row + meta.settings._iDisplayStart + 1; //auto increment
+                    }
+                },
+                {data: 'name', class: 'text-left'},
+                {data: 'created_at', width:"15%", class: 'text-center'},
+                {data: 'action', width: '15%',class: 'text-center'},
+            ],
+
+        });
+        $(document).on("click", ".hapus", function () {
+            var id = $(this).data('id');
+            $('#idhapus').val(id);
+
+        });
+    </script>
+
 </x-backend.dashboard-layout>
