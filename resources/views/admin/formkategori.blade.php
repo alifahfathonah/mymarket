@@ -1,4 +1,4 @@
-<x-backend.dashboard-layout :title="$judul" :tagSubMenu="$tagSubMenu">
+<x-backend.dashboard-layout :title="$judul" :tagSubMenu="$tagSubMenu" :total-notif="null">
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">

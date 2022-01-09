@@ -8,11 +8,13 @@ class DashboardLayout extends Component
 {
     public $title;
     public $tagSubMenu;
+    public $totalNotif;
 
-    public function __construct($title,$tagSubMenu)
+    public function __construct($title,$tagSubMenu,$totalNotif=null)
     {
         $this->title = $title;
         $this->tagSubMenu = $tagSubMenu;
+        $this->totalNotif = $totalNotif;
     }
 
     /**

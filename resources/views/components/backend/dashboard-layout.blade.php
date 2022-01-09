@@ -10,7 +10,7 @@
         <!-- START: Site wrapper -->
         <div class="wrapper">
             <!-- Navbar -->
-                <x-backend.navbar-layout />
+                <x-backend.navbar-layout :total-notif="$totalNotif"/>
             <!-- /.navbar -->
 
             <!-- Start: Sidebar -->

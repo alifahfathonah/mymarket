@@ -1,4 +1,4 @@
-<x-backend.dashboard-layout :title="$judul" :tagSubMenu="$tagSubMenu">
+<x-backend.dashboard-layout :title="$judul" :tagSubMenu="$tagSubMenu" :total-notif="null">
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
@@ -28,7 +28,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">FORM INPUT {{($tag != 'edit')?"TAMBAH":"EDIT"}} TOKO</h3>
-                            <a href="{{route('admin.toko')}}">
+                            <a href="{{route('toko.produk')}}">
                                 <button class="btn btn-danger btn-sm float-right">KEMBALI</button>
                             </a>
                         </div>

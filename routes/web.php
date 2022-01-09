@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\{DashboardController as DashAdmin,KategoriController as KatAdmin,TokoController as TokAdmin};
 use App\Http\Controllers\Toko\{DashboardController as DashToko,ProdukController as ProdukToko};
-use App\Http\Controllers\User\{DashboardController as DashUser,BelanjaController as BelanjaUser};
+use App\Http\Controllers\User\{DashboardController as DashUser,BelanjaController as BelanjaUser,KeranjangController as KeranjangUser};
 
 
 Route::get('/', function () {
@@ -44,6 +44,8 @@ Route::group(['middleware' => ['web','auth','roles']],function() {
         Route::get('/user/dashboard', [DashUser::class, 'index'])->name('user.dashboard');
         Route::get('/user/belanja/{id?}', [BelanjaUser::class, 'index'])->name('user.belanja');
         Route::post('/user/belanja', [BelanjaUser::class, 'save'])->name('user.savebelanja');
+        Route::get('/user/keranjang', [KeranjangUser::class, 'index'])->name('user.keranjang');
+        Route::post('/user/keranjang', [KeranjangUser::class, 'save'])->name('user.savekeranjang');
 
     });
 

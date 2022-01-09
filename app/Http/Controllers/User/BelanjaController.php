@@ -32,6 +32,14 @@ class BelanjaController extends Controller
         } else {
             $produk = Produk::all();
         }
+        $transaksi = Transaksi::where('user_id',$this->users->id)
+            ->whereNull('kode')
+            ->first();
+        if($transaksi !=null){
+            $detail = Detailtransaksi::where('transaksi_id',$transaksi->id)->get()->count();
+        } else{
+            $detail = 0;
+        }
         $kategori = Kategori::all();
         return view('user.belanja',array(
             'judul' => "Dashboard Toko | MYMARKET V.1.0",
@@ -39,6 +47,7 @@ class BelanjaController extends Controller
             'tagSubMenu' => "belanja",
             'kategori' => $kategori,
             'produk' => $produk,
+            'totalNotif' => $detail,
         ));
     }
 

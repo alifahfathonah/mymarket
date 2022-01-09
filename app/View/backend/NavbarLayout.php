@@ -6,14 +6,11 @@ use Illuminate\View\Component;
 
 class NavbarLayout extends Component
 {
-    /**
-     * Create a new component instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public $totalNotif;
+
+    public function __construct($totalNotif=null)
     {
-        //
+        $this->totalNotif = $totalNotif;
     }
 
     /**
