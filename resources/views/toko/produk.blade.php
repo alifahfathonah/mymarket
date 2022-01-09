@@ -5,12 +5,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>TOKO</h1>
+                        <h1>PRODUK</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Toko</li>
+                            <li class="breadcrumb-item active">Produk</li>
                         </ol>
                     </div>
                 </div>
@@ -56,7 +56,7 @@
             <!-- START: MODAL HAPUS -->
             <div class="modal fade" id="modalHapus" tabindex="-1"  aria-hidden="true">
                 <div class="modal-dialog">
-                    <form action="{{route('admin.deletetoko')}}" method="post">
+                    <form action="{{route('toko.deleteproduk')}}" method="post">
                         @csrf
                         @method('delete')
                     <div class="modal-content">
@@ -64,7 +64,7 @@
                             <h5 class="modal-title" id="exampleModalLabel">HAPUS</h5>
                         </div>
                         <div class="modal-body">
-                                <input type="hidden" id="idhapus" name="id" value="">
+                                <input type="text" id="idhapus" name="id" value="">
                             Apakah anda ingin menghapus data ini?
                         </div>
                         <div class="modal-footer">
@@ -107,7 +107,7 @@
                 {data: 'harga', class: 'text-left'},
                 {
                     data: 'gambar', class: 'text-left', render: function (data, type, row, meta) {
-                        return "<img src=\"/path/" + data + "\" height=\"50\"/>";
+                        return "<img src=\"{{ url('storage/produk/') }}" +'/'+ data + "\" height=\"50\"/>";
                     }
                 },
                 {data: 'created_at', class: 'text-left'},

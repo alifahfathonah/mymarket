@@ -28,8 +28,6 @@ class ProdukController extends Controller
 
     public function index(Request $request)
     {
-//        $toko = Toko::where('user_id', $this->users->id)->first();
-//       return Produk::with('kategori')->where('toko_id', $toko->id)->get();
         if ($request->ajax()) {
             $toko = Toko::where('user_id', $this->users->id)->first();
             $produk = Produk::with('kategori')->where('toko_id', $toko->id)->get();
@@ -40,8 +38,8 @@ class ProdukController extends Controller
                     return $formatedDate;
                 })
                 ->addColumn('action', function ($row) {
-                    $btn = '<a href="'.route('admin.edittoko',$row->id).'" class="edit btn btn-success btn-sm m-1"> EDIT</a>';
-                    $btn2 = $btn.'<a href="#" class="hapus btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#modalHapus" data-id="'.$row->id.'"> HAPUS</a>';
+//                    $btn = '<a href="'.route('admin.edittoko',$row->id).'" class="edit btn btn-success btn-sm m-1"> DETAIL</a>';
+                    $btn2 = '<a href="#" class="hapus btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#modalHapus" data-id="'.$row->id.'"> HAPUS</a>';
                     return $btn2;
                 })
                 ->rawColumns(['action'])
@@ -91,6 +89,14 @@ class ProdukController extends Controller
         $produk->deskripsi = $request->deskripsi;
         $produk->save();
         notify()->preset('hapus', ['title' => 'Success', 'message' => 'Produk berhasil disimpan']);
+        return redirect(route('toko.produk'));
+    }
+
+    public function destroy(Request $request)
+    {
+        $produk = Produk::find($request->id);
+        $produk->delete();
+        notify()->preset('hapus', ['title' => 'Success', 'message' => 'Data produk berhasil dihapus']);
         return redirect(route('toko.produk'));
     }
 }

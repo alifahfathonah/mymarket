@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\{DashboardController as DashAdmin,KategoriController as KatAdmin,TokoController as TokAdmin};
 use App\Http\Controllers\Toko\{DashboardController as DashToko,ProdukController as ProdukToko};
+use App\Http\Controllers\User\{DashboardController as DashUser,BelanjaController as BelanjaUser};
 
 
 Route::get('/', function () {
@@ -36,7 +37,14 @@ Route::group(['middleware' => ['web','auth','roles']],function() {
         Route::get('/store/dashboard', [DashToko::class, 'index'])->name('toko.dashboard');
         Route::get('/store/produk', [ProdukToko::class, 'index'])->name('toko.produk');
         Route::post('/store/produk', [ProdukToko::class, 'save'])->name('toko.saveproduk');
+        Route::delete('/store/produk', [ProdukToko::class, 'destroy'])->name('toko.deleteproduk');
         Route::get('/store/produk/add', [ProdukToko::class, 'create'])->name('toko.addproduk');
+    });
+    Route::group(['roles' => 'user'], function () {
+        Route::get('/user/dashboard', [DashUser::class, 'index'])->name('user.dashboard');
+        Route::get('/user/belanja/{id?}', [BelanjaUser::class, 'index'])->name('user.belanja');
+        Route::post('/user/belanja', [BelanjaUser::class, 'save'])->name('user.savebelanja');
+
     });
 
 });

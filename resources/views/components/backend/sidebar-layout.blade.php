@@ -27,6 +27,28 @@
                     data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
+                    @if(Auth::user()->role_id == '3')
+                        <li class="nav-header">HALAMAN USER</li>
+                        <li class="nav-item">
+                            <a href="{{route('user.dashboard')}}"
+                               class="nav-link {{($tagSubMenu == 'dashboard')?"active":"";}}">
+
+                                <i class="nav-icon fa fa-tachometer-alt"></i>
+                                <p>
+                                    DASHBOARD
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('user.belanja')}}"
+                               class="nav-link {{($tagSubMenu == 'belanja')?"active":"";}}">
+                                <i class="nav-icon fa fa-cart-plus"></i>
+                                <p>
+                                    BELANJA
+                                </p>
+                            </a>
+                        </li>
+                    @endif
                     @if(Auth::user()->role_id == '2')
                         <li class="nav-header">HALAMAN STORE</li>
                         <li class="nav-item">
