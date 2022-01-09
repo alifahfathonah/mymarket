@@ -38,10 +38,10 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="../gallery.html" class="nav-link">
+                        <a href="{{route('admin.toko')}}" class="nav-link {{($tagSubMenu == 'toko')?"active":"";}}">
                             <i class="nav-icon fa fa-clipboard-list"></i>
                             <p>
-                                DATA JENIS
+                                DATA TOKO
                             </p>
                         </a>
                     </li>

@@ -17,6 +17,11 @@ class User extends Authenticatable
         'password',
     ];
 
+    public function toko()
+    {
+        return $this->hasOne(Toko::class);
+    }
+
     protected $hidden = [
         'password',
         'remember_token',
