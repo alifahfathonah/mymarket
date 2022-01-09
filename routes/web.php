@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\{DashboardController as DashAdmin,KategoriController as KatAdmin,TokoController as TokAdmin};
+use App\Http\Controllers\Toko\{DashboardController as DashToko,ProdukController as ProdukToko};
 
 
 Route::get('/', function () {
@@ -29,6 +30,13 @@ Route::group(['middleware' => ['web','auth','roles']],function() {
         Route::post('/admin/kategori', [KatAdmin::class, 'save'])->name('admin.savekategori');
         Route::patch('/admin/kategori', [KatAdmin::class, 'update'])->name('admin.updatekategori');
         Route::delete('/admin/kategori', [KatAdmin::class, 'destroy'])->name('admin.deletekategori');
+    });
+
+    Route::group(['roles' => 'toko'], function () {
+        Route::get('/store/dashboard', [DashToko::class, 'index'])->name('toko.dashboard');
+        Route::get('/store/produk', [ProdukToko::class, 'index'])->name('toko.produk');
+        Route::post('/store/produk', [ProdukToko::class, 'save'])->name('toko.saveproduk');
+        Route::get('/store/produk/add', [ProdukToko::class, 'create'])->name('toko.addproduk');
     });
 
 });

@@ -23,36 +23,61 @@
 
             <!-- Sidebar Menu -->
             <nav class="mt-2">
-                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                    data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
+                    @if(Auth::user()->role_id == '2')
+                        <li class="nav-header">HALAMAN STORE</li>
+                        <li class="nav-item">
+                            <a href="{{route('toko.dashboard')}}"
+                               class="nav-link {{($tagSubMenu == 'dashboard')?"active":"";}}">
 
-                    <li class="nav-header">MASTER DATA</li>
+                                <i class="nav-icon fa fa-tachometer-alt"></i>
+                                <p>
+                                    DASHBOARD
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('toko.produk')}}"
+                               class="nav-link {{($tagSubMenu == 'produk')?"active":"";}}">
+                                <i class="nav-icon fa fa-boxes"></i>
+                                <p>
+                                    PRODUK
+                                </p>
+                            </a>
+                        </li>
+                    @endif
+                    @if(Auth::user()->role_id == '1')
+                        <li class="nav-header">MASTER DATA</li>
 
-                    <li class="nav-item">
-                        <a href="{{route('admin.kategori')}}" class="nav-link {{($tagSubMenu == 'kategori')?"active":"";}}">
-                            <i class="nav-icon fa fa-clipboard-list"></i>
-                            <p>
-                                DATA KATEGORI
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{route('admin.toko')}}" class="nav-link {{($tagSubMenu == 'toko')?"active":"";}}">
-                            <i class="nav-icon fa fa-clipboard-list"></i>
-                            <p>
-                                DATA TOKO
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="../gallery.html" class="nav-link">
-                            <i class="nav-icon fa fa-clipboard-list"></i>
-                            <p>
-                                DATA PRODUK
-                            </p>
-                        </a>
-                    </li>
+                        <li class="nav-item">
+                            <a href="{{route('admin.kategori')}}"
+                               class="nav-link {{($tagSubMenu == 'kategori')?"active":"";}}">
+                                <i class="nav-icon fa fa-clipboard-list"></i>
+                                <p>
+                                    DATA KATEGORI
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('admin.toko')}}" class="nav-link {{($tagSubMenu == 'toko')?"active":"";}}">
+                                <i class="nav-icon fa fa-clipboard-list"></i>
+                                <p>
+                                    DATA TOKO
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../gallery.html" class="nav-link">
+                                <i class="nav-icon fa fa-clipboard-list"></i>
+                                <p>
+                                    DATA PRODUK
+                                </p>
+                            </a>
+                        </li>
+                    @endif
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->
