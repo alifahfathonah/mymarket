@@ -48,6 +48,15 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{route('user.transaksi')}}"
+                               class="nav-link {{($tagSubMenu == 'transaksi')?"active":"";}}">
+                                <i class="nav-icon fa fa-credit-card"></i>
+                                <p>
+                                    TRANSAKSI
+                                </p>
+                            </a>
+                        </li>
                     @endif
                     @if(Auth::user()->role_id == '2')
                         <li class="nav-header">HALAMAN STORE</li>
