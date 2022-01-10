@@ -25,6 +25,21 @@ Ini adalah aplikasi berbasis web untuk latihan marketplace dan tidak ditujukan u
 - jalankan di terminal: php artisan migrate:fresh --seed
 - jalankan di terminal: php artisan serve
 
+## Demo
+https://apisibel.xyz/
+
+halaman admin:
+username: admin@gmail.com
+password: 1234
+
+halaman toko:
+username: toko@gmail.com
+password: 1234
+
+halaman user:
+username: user@gmail.com
+password: 1234
+
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
