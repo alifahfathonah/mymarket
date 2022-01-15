@@ -10,7 +10,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Blank Page</li>
+                            <li class="breadcrumb-item active">Dashboard</li>
                         </ol>
                     </div>
                 </div>
@@ -23,17 +23,16 @@
             <!-- Default box -->
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Title</h3>
-
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
-                            <i class="fas fa-minus"></i></button>
-                        <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
-                            <i class="fas fa-times"></i></button>
-                    </div>
+                    <h3 class="card-title">Dashboard</h3>
                 </div>
                 <div class="card-body">
-                    Start creating your amazing application!
+                    Dipersembahkan oleh:<br>
+                    <ol>
+                        <li>Aldo Gilar Visitama</li>
+                        <li>Apria Andika</li>
+                        <li>Febby Wahyu Irawan</li>
+                        <li>Apriyansah</li>
+                    </ol>
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
@@ -46,4 +45,7 @@
         </section>
         <!-- /.content -->
     </div>
+    <!-- START: Script -->
+    <x-backend.script-layout />
+    <!-- END: Script -->
 </x-backend.dashboard-layout>

@@ -5,12 +5,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Keranjang</h1>
+                        <h1>Detail Transaksi</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Keranjang Belanja</li>
+                            <li class="breadcrumb-item"><a href="{{route('user.dashboard')}}">Home</a></li>
+                            <li class="breadcrumb-item active">Transaksi</li>
                         </ol>
                     </div>
                 </div>
@@ -21,17 +21,10 @@
         <section class="content">
 
             <!-- Default box -->
-            <div class="card">
+            <div class="card card-dark">
                 <div class="card-header">
-                    <h3 class="card-title">DAFTAR KERANJANG </h3>
-                    @if($idTransaksi != null)
-                    <form action="{{route('user.savekeranjang')}}" method="post">
-                        @csrf
-                        <input type="hidden" class="form-control" name="grandtotal" id="gtotal" value="">
-                        <input type="hidden" name="idkeranjang" value="{{$idTransaksi}}">
-                        <button type="submit"  class="btn btn-success btn-sm float-right">CHECKOUT</button>
-                    </form>
-                    @endif
+                    <h3 class="card-title">INVOICE NOMOR:  #{{strtoupper($transaksi->kode)}}</h3>
+
 
                 </div>
                 <div class="card-body">
@@ -54,7 +47,7 @@
                                         <td>{{$no++}}</td>
                                         <td>{{$row->produk->name}}</td>
                                         <td>{{$row->jumlah}}</td>
-                                        <td>{{ $row->jumlah * $row->produk->harga }}</td>
+                                        <td>{{ number_format($row->jumlah * $row->produk->harga,0,".",".") }}</td>
                                     </tr>
                                     @php $grandtotal = $grandtotal + $row->jumlah * $row->produk->harga @endphp
                                 @endforeach
@@ -78,11 +71,10 @@
                         <!-- /.col -->
                         <div class="col-6">
                             <div class="table-responsive">
-                                <input type="hidden" id="grandtotal" value="{{$grandtotal}}">
                                 <table class="table">
                                     <tr>
                                         <th>Total:</th>
-                                        <td>Rp. {{$grandtotal}}</td>
+                                        <td>Rp. {{number_format($grandtotal,0,".",".")}}</td>
                                     </tr>
                                 </table>
                             </div>
@@ -92,7 +84,7 @@
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                    Footer
+                    <a href="{{route('user.transaksi')}}"><button class="btn btn-sm btn-danger">Back</button></a>
                 </div>
                 <!-- /.card-footer-->
             </div>
@@ -104,11 +96,4 @@
     <!-- START: Script -->
     <x-backend.script-layout />
     <!-- END: Script -->
-
-    <script>
-        $( document ).ready(function() {
-            let total = $('#grandtotal').val();
-            $('#gtotal').val(total);
-        });
-    </script>
 </x-backend.dashboard-layout>

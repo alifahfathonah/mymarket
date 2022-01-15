@@ -85,6 +85,7 @@ class BelanjaController extends Controller
             $transaksi = new Transaksi();
             $transaksi->user_id = $idUser;
             $transaksi->total = $produk->harga;
+            $transaksi->status = 1;
             $transaksi->save();
             $idTransaksi = $transaksi->id;
 

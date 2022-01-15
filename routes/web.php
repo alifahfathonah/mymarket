@@ -1,14 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Admin\{DashboardController as DashAdmin,KategoriController as KatAdmin,TokoController as TokAdmin};
 use App\Http\Controllers\Toko\{DashboardController as DashToko,ProdukController as ProdukToko};
 use App\Http\Controllers\User\{DashboardController as DashUser,BelanjaController as BelanjaUser,KeranjangController as KeranjangUser,TransaksiController as TransUser};
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::redirect('/', '/public/login');
+Route::redirect('/public', '/public/login');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -46,8 +47,9 @@ Route::group(['middleware' => ['web','auth','roles']],function() {
         Route::post('/user/belanja', [BelanjaUser::class, 'save'])->name('user.savebelanja');
         Route::get('/user/keranjang', [KeranjangUser::class, 'index'])->name('user.keranjang');
         Route::post('/user/keranjang', [KeranjangUser::class, 'save'])->name('user.savekeranjang');
-        Route::get('/user/transaksi', [TransUser::class, 'index'])->name('user.transaksi');
 
+        Route::get('/user/transaksi', [TransUser::class, 'index'])->name('user.transaksi');
+        Route::get('/user/transaksi/{id}/detail', [TransUser::class, 'detail'])->name('user.detail');
     });
 
 });

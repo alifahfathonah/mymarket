@@ -9,8 +9,8 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Produk</li>
+                            <li class="breadcrumb-item"><a href="{{route('user.dashboard')}}">Home</a></li>
+                            <li class="breadcrumb-item active">Transaksi</li>
                         </ol>
                     </div>
                 </div>
@@ -23,8 +23,7 @@
             <!-- Default box -->
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Daftar Toko</h3>
-                    <a href="{{route('toko.addproduk')}}"><button class="btn btn-primary btn-sm float-right">TAMBAH</button></a>
+                    <h3 class="card-title">Daftar Transaksi</h3>
                 </div>
                 <div class="card-body">
                     <table class="table table-bordered table-striped mb-0 display nowrap" id="tabelTransaksi"

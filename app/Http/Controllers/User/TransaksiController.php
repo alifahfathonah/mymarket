@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Detailtransaksi;
 use App\Models\Produk;
 use App\Models\Toko;
 use App\Models\Transaksi;
@@ -29,7 +30,9 @@ class TransaksiController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $transaksi = Transaksi::where('user_id', $this->users->id)->get();
+            $transaksi = Transaksi::where('user_id', $this->users->id)
+                ->whereNotNull('kode')
+                ->get();
             return Datatables::of($transaksi)
                 ->addIndexColumn()
                 ->editColumn('created_at', function($data){
@@ -37,7 +40,7 @@ class TransaksiController extends Controller
                     return $formatedDate;
                 })
                 ->addColumn('action', function ($row) {
-                    $btn = '<a href="'.route('admin.edittoko',$row->id).'" class="edit btn btn-success btn-sm m-1"> DETAIL</a>';
+                    $btn = '<a href="'.route('user.detail',$row->id).'" class="edit btn btn-success btn-sm m-1"> DETAIL</a>';
 //                    $btn2 = '<a href="#" class="hapus btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#modalHapus" data-id="'.$row->id.'"> HAPUS</a>';
                     return $btn;
                 })
@@ -48,6 +51,19 @@ class TransaksiController extends Controller
             'judul' => "Dashboard Toko | MYMARKET V.1.0",
             'aktifTag' => "transaksi",
             'tagSubMenu' => "transaksi",
+        ));
+    }
+
+    public function detail($id)
+    {
+        $transaksi = Transaksi::findOrFail($id);
+        $detail = Detailtransaksi::where('transaksi_id',$id)->get();
+        return view('user.detailtransaksi',array(
+            'judul' => "Dashboard Toko | MYMARKET V.1.0",
+            'aktifTag' => "transaksi",
+            'tagSubMenu' => "transaksi",
+            'detail' => $detail,
+            'transaksi' => $transaksi,
         ));
     }
 }

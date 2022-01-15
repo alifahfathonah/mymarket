@@ -49,10 +49,12 @@ class KeranjangController extends Controller
     public function save(Request $request)
     {
         $request->validate([
+            'grandtotal' => 'required|numeric',
             'idkeranjang' => 'required|numeric',
         ]);
         Transaksi::where('id',$request->idkeranjang)->update([
            'kode' =>  $this->generateRandomString(),
+            'total' => $request->grandtotal,
         ]);
         notify()->preset('hapus', ['title' => 'Success', 'message' => 'Anda berhasil Checkout']);
         return redirect(route('user.belanja'));

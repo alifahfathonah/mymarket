@@ -19,6 +19,7 @@ class CreateTransaksisTable extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->string('kode')->nullable();
+            $table->tinyInteger('status');
             $table->integer('total')->default(0);
             $table->timestamps();
         });
